@@ -14,7 +14,6 @@ import MyBlogs from './pages/MyBlogs'
 
 const App = () => {
 
-
   
   return (
       <UserContextProvider>

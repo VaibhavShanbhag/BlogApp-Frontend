@@ -9,7 +9,8 @@ import { URL, IF } from "../url"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/UserContext"
 import Loader from "../components/Loader"
-import Cookies from "js-cookie"
+import { message } from "antd"
+
 
 
 const PostDetails = () => {
@@ -41,7 +42,7 @@ const PostDetails = () => {
   const handleDeletePost = async () => {
 
     try {
-      const res = await axios.delete(URL + "/api/posts/" + postId, { withCredentials: true })
+      const res = await axios.delete(URL + "/api/posts/post/" + postId, { withCredentials: true })
       console.log(res.data)
       navigate("/")
 
@@ -92,13 +93,15 @@ const PostDetails = () => {
         )
       console.log(res);
 
-      fetchPostComments()
-      setComment("")
+      // fetchPostComments()
+      // setComment("")
       window.location.reload(true)
+      
 
     }
     catch (err) {
       console.log(err)
+      message.error("Something went wrong")
     }
 
   }
@@ -110,7 +113,7 @@ const PostDetails = () => {
       {loader ? <div className="h-[80vh] flex justify-center items-center w-full"><Loader /></div> : <div className="px-8 md:px-[200px] mt-8">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold text-black md:text-3xl">{post.title}</h1>
-          {user?.userid === post?.userid && <div className="flex items-center justify-center space-x-2">
+          {user?.userid == post?.userid && <div className="flex items-center justify-center space-x-2">
             <p className="cursor-pointer" onClick={() => navigate("/edit/" + postId)} ><BiEdit /></p>
             <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete /></p>
           </div>}
@@ -139,7 +142,7 @@ const PostDetails = () => {
         <div className="flex flex-col mt-4">
           <h3 className="mt-6 mb-4 font-semibold">Comments:</h3>
           {comments.length > 0 ? comments.map((c) => (
-            <Comment key={c._id} c={c} post={post} />
+            <Comment key={c.commentid} c={c} post={post} />
           )) : <h3 className="mt-6 mb-4 font-semibold">No Comments Present on this Post</h3>}
 
         </div>

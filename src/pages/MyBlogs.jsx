@@ -21,7 +21,7 @@ const MyBlogs = () => {
   const fetchPosts=async()=>{
     setLoader(true)
     try{
-      const res=await axios.get(URL+"/api/posts/user/"+user._id)
+      const res=await axios.get(URL+"/api/posts/user/"+user.userid)
       // console.log(res.data)
       setPosts(res.data)
       if(res.data.length===0){
@@ -35,7 +35,7 @@ const MyBlogs = () => {
     }
     catch(err){
       console.log(err)
-      setLoader(true)
+      // setLoader(true)
     }
   }
 
@@ -51,8 +51,8 @@ const MyBlogs = () => {
         {loader?<div className="h-[40vh] flex justify-center items-center"><Loader/></div>:!noResults?
         posts.map((post)=>(
           <>
-          <Link to={user?`/posts/post/${post._id}`:"/login"}>
-          <HomePosts key={post._id} post={post}/>
+          <Link to={user?`/posts/post/${post.postid}`:"/login"}>
+          <HomePosts key={post.postid} post={post}/>
           </Link>
           </>
           

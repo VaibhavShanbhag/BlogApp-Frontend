@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import { useState } from "react"
 import axios from 'axios'
 import {URL} from '../url'
+import { message } from "antd"
 
 
 const Register = () => {
@@ -22,11 +23,13 @@ const Register = () => {
       setPassword(res.data.password)
       setError(false)
       navigate("/login")
+      message.success("User Registered Successfully")
       
     }
     catch(err){
       setError(true)
       console.log(err)
+      message.error("Error occured while registering user")
     }
 
   }

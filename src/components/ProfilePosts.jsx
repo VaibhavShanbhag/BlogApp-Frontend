@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 
 const ProfilePosts = ({p}) => {
+  const timestampString = p.timestamp;
+  const date = new Date(timestampString.replace(/(\d{4})\.(\d{2})\.(\d{2})\.(\d{2})\.(\d{2})\.(\d{2})/, '$1-$2-$3T$4:$5:$6'));
+  const dateString = date.toLocaleDateString();
+  const timeString = date.toLocaleTimeString();
   // console.log(p)
   return (
     <div className="w-full flex mt-8 space-x-4">
@@ -16,11 +20,11 @@ const ProfilePosts = ({p}) => {
       <div className="flex mb-2 text-sm font-semibold text-gray-500 items-center justify-between md:mb-4">
        <p>@{p.username}</p>
        <div className="flex space-x-2">
-       <p>{new Date(p.updatedAt).toString().slice(0,15)}</p>
-       <p>{new Date(p.updatedAt).toString().slice(16,24)}</p>
+       <p>{dateString}</p>
+       <p>{timeString}</p>
        </div>
       </div>
-      <p className="text-sm md:text-lg">{p.desc.slice(0,200)+" ...Read more"}</p>
+      <p className="text-sm md:text-lg">{p.des.slice(0,200)+" ...Read more"}</p>
     </div>
 
     </div>

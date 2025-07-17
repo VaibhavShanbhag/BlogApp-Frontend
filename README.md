@@ -1,4 +1,4 @@
-# BlogSphere – A Scalable GCP-Deployed Blog Application
+# BlogSphere
 
 BlogSphere is a full-stack blogging platform where users can register, log in, view other users' posts, create their own blogs with images, comment on posts, and manage their content securely. The entire application is cloud-native, deployed on Google Cloud using App Engine and Cloud SQL for scale and reliability.
 
